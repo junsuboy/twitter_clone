@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
-import firebase from "./firebase";
-console.log(firebase);
+import fbase from "fbase";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App /> 
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
