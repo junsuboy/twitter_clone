@@ -6,7 +6,7 @@ import { dbService, storageService } from "fbase";
 const Home = ({ userObj }) => {
   const [tweet, setTweet] = useState("");
   const [tweets, setTweets] = useState([]);
-  const [attachment, setAttachment] = useState();
+  const [attachment, setAttachment] = useState("");
   useEffect(() => {
     dbService.collection("tweets").onSnapshot((snapshot) => {
       const tweetArray = snapshot.docs.map((doc) => ({
@@ -17,16 +17,24 @@ const Home = ({ userObj }) => {
     });
   }, []);
   const onSubmit = async (event) => {
+    let attachmentUrl = "";
     event.preventDefault();
-    const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
-    const response = await fileRef.putString(attachment, "data_url");
-    console.log(response);
-    /*await dbService.collection("tweets").add({
+    if (attachment !== "") {
+      const attachmentRef = storageService
+        .ref()
+        .child(`${userObj.uid}/${uuidv4()}`);
+      const response = await attachmentRef.putString(attachment, "data_url");
+      attachmentUrl = await response.ref.getDownloadURL();
+    }
+    const tweetObj = {
       text: tweet,
       createdAt: Date.now(),
       creatorId: userObj.uid,
-    });
-    setTweet("");*/
+      attachmentUrl,
+    };
+    await dbService.collection("tweets").add(tweetObj);
+    setTweet("");
+    setAttachment("");
   };
   const onChange = (event) => {
     const {
@@ -48,7 +56,7 @@ const Home = ({ userObj }) => {
     };
     reader.readAsDataURL(theFile);
   };
-  const onClearAttachment = () => setAttachment(null);
+  const onClearAttachment = () => setAttachment("");
   return (
     <div>
       <form onSubmit={onSubmit}>
