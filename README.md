@@ -28,6 +28,10 @@
 - "Github Pages"
 - "FontAwesome"
 
+<br><br><br>
+
+<div align="center">
+  
 ## Look How It Works
 
 ### Create Account & Login
@@ -47,6 +51,8 @@
 
 ### Delete
 ![Delete](https://user-images.githubusercontent.com/86935775/130709804-46db9717-a369-48fe-9439-493de6324d88.gif)
+  
+**You Can't Edit or Delete if it's not your Tweet.**
 
 ### Tweets
 ![image](https://user-images.githubusercontent.com/86935775/130709843-6f55e30a-f28a-4174-8c59-ac577f3b2fe0.png)
@@ -62,3 +68,5 @@
 
 ### Log Out
 ![Log Out](https://user-images.githubusercontent.com/86935775/130710005-b976e9f8-b43b-4292-b11b-c1f0c1db2cdb.gif)
+
+</div>
